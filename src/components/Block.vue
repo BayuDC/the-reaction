@@ -2,21 +2,32 @@
 export default {
     name: "Block",
     props: ["delay"],
+    methods: {
+        start() {
+            this.reactime = Date.now();
+        },
+        stop() {
+            this.reactime = Date.now() - this.reactime;
+            console.log(this.reactime);
+        },
+    },
     data() {
         return {
             show: false,
+            reactime: 0,
         };
     },
     mounted() {
         setTimeout(() => {
             this.show = true;
+            this.start();
         }, this.delay);
     },
 };
 </script>
 
 <template>
-    <div v-if="show" class="block">Click Me</div>
+    <div v-if="show" @click="stop" class="block">Click Me</div>
 </template>
 
 <style>
