@@ -1,7 +1,11 @@
 <script>
+import Block from "./components/Block.vue";
+
 export default {
     name: "App",
-    components: {},
+    components: {
+        Block,
+    },
     methods: {
         start() {
             this.playing = true;
@@ -18,6 +22,7 @@ export default {
 <template>
     <h1>The Reaction Game</h1>
     <button @click="start">Start</button>
+    <Block></Block>
 </template>
 
 <style>
