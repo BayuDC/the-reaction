@@ -8,12 +8,14 @@ export default {
     },
     methods: {
         start() {
+            this.delay = 2000 + Math.random() * 5000;
             this.playing = true;
         },
     },
     data() {
         return {
             playing: false,
+            delay: 0,
         };
     },
 };
@@ -21,8 +23,8 @@ export default {
 
 <template>
     <h1>The Reaction Game</h1>
-    <button @click="start">Start</button>
-    <Block></Block>
+    <button @click="start" :disabled="playing" type="button">Start</button>
+    <Block v-if="playing" :delay="delay"></Block>
 </template>
 
 <style>
@@ -40,5 +42,10 @@ export default {
     background: rgb(65, 184, 131);
     color: white;
     padding: 10px 20px;
+    outline: none;
+    cursor: pointer;
+}
+#app button:disabled {
+    cursor: not-allowed;
 }
 </style>
