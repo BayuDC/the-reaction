@@ -8,14 +8,20 @@ export default {
     },
     methods: {
         start() {
-            this.delay = 2000 + Math.random() * 5000;
+            this.delay = 2000 + Math.random() * 3000;
             this.playing = true;
+        },
+        end(reactime) {
+            this.delay = null;
+            this.score = reactime;
+            this.playing = false;
         },
     },
     data() {
         return {
             playing: false,
             delay: 0,
+            score: 0,
         };
     },
 };
@@ -24,7 +30,9 @@ export default {
 <template>
     <h1>The Reaction Game</h1>
     <button @click="start" :disabled="playing" type="button">Start</button>
-    <Block v-if="playing" :delay="delay"></Block>
+    <p v-if="!playing && delay == null">Reaction Time: {{ this.score }}ms</p>
+    <p v-if="playing">Ready...</p>
+    <Block v-if="playing" :delay="delay" @end="end"></Block>
 </template>
 
 <style>

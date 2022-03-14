@@ -8,7 +8,7 @@ export default {
         },
         stop() {
             this.reactime = Date.now() - this.reactime;
-            console.log(this.reactime);
+            this.$emit("end", this.reactime);
         },
     },
     data() {
@@ -41,5 +41,6 @@ export default {
     align-items: center;
     justify-content: center;
     font-size: 20px;
+    cursor: pointer;
 }
 </style>
